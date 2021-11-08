@@ -13,26 +13,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class User {
 
-	public User(String userName, String password, String firstName, String lastName, String email) {
-		super();
-		this.userName = userName;
-		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-	}
-	public User() {
-		super();
-	}
-	public User(int userId, String userName, String password, String firstName, String lastName, String email) {
-		super();
-		this.userId = userId;
-		this.userName = userName;
-		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int userId;
@@ -48,6 +28,28 @@ public class User {
 	private String lastName;
 	@Column(length = 150, nullable = false)
 	private String email;
+	
+	public User() {
+		super();
+	}
+	public User(String userName, String password, String firstName, String lastName, String email) {
+		super();
+		this.userName = userName;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+	}
+	public User(int userId, String userName, String password, String firstName, String lastName, String email) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+	}
+	
 	public int getUserId() {
 		return userId;
 	}
@@ -84,6 +86,7 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -96,6 +99,7 @@ public class User {
 		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
 		return result;
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -134,11 +138,11 @@ public class User {
 			return false;
 		return true;
 	}
+	
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", userName=" + userName + ", password=" + password + ", firstName="
 				+ firstName + ", lastName=" + lastName + ", email=" + email + "]";
 	}
-	
-	
+		
 }

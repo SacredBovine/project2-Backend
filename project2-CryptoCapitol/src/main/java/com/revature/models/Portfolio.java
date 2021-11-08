@@ -13,6 +13,18 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Portfolio {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(nullable = false, name="asset_id")
+	private Asset asset;
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(nullable = false, name="user_id")
+	private User user;
+	@Column(nullable = false)
+	private double quantity;
+	
 	public Portfolio() {
 		super();
 	}
@@ -29,17 +41,7 @@ public class Portfolio {
 		this.user = user;
 		this.quantity = quantity;
 	}
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn(nullable = false, name="asset_id")
-	private Asset asset;
-	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn(nullable = false, name="user_id")
-	private User user;
-	@Column(nullable = false)
-	private double quantity;
+	
 	public int getId() {
 		return id;
 	}
@@ -64,10 +66,7 @@ public class Portfolio {
 	public void setQuantity(double quantity) {
 		this.quantity = quantity;
 	}
-	@Override
-	public String toString() {
-		return "Portfolio [id=" + id + ", asset=" + asset + ", user=" + user + ", quantity=" + quantity + "]";
-	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -106,5 +105,9 @@ public class Portfolio {
 		return true;
 	}
 	
+	@Override
+	public String toString() {
+		return "Portfolio [id=" + id + ", asset=" + asset + ", user=" + user + ", quantity=" + quantity + "]";
+	}
 	
 }
