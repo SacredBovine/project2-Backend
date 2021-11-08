@@ -32,7 +32,7 @@ public class Asset {
 	private int id;
 	@Column(nullable = false)
 	private int rank;
-    @Column(nullable = false, length=3)
+    @Column(nullable = false, length=3, unique=true)
     private String symbol;
     @Column(nullable = false, length=100)
     private String name;

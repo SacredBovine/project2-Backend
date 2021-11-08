@@ -37,6 +37,11 @@ public class AssetController {
 		Asset asset = assetService.findAssetById(id);
 		return asset;
 	}
+	@GetMapping("/{symbol}")
+	public Asset oneAsset(@PathVariable("symbol") String symbol){
+		Asset asset = assetService.findBySymbol(symbol);
+		return asset;
+	}
 	
 	@PostMapping
 	@PutMapping
