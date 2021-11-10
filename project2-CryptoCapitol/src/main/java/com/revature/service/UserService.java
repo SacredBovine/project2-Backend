@@ -1,12 +1,12 @@
 package com.revature.service;
 
-import java.util.List;
-
+import com.revature.models.User;
+import com.revature.repos.UserDAO;
+import com.revature.utils.PassEncrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.revature.models.User;
-import com.revature.repos.UserDAO;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -29,7 +29,7 @@ public class UserService {
 	}
 	
 	public void addOrUpdateUser(User user) {
-		userDao.save(user);
+		User hashedPassUser = new User(user.getUserName(), PassEncrypt.getHash(user.getPassword().getBytes(), "SHA-512"), user.getFirstName(), user.getLastName(), user.getEmail());
+		userDao.save(hashedPassUser);
 	}
-	
 }
