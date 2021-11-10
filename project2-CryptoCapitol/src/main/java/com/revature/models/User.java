@@ -1,14 +1,8 @@
 package com.revature.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 import org.hibernate.annotations.NaturalId;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.*;
 
 @Entity
 public class User {
@@ -39,7 +33,7 @@ public class User {
 	@NaturalId
 	@Column(length = 25, unique = true, nullable = false)
 	private String userName;
-	@Column(length = 64, nullable = false)
+	@Column(length = 128, nullable = false)
 	//@JsonIgnore
 	private String password;
 	@Column(length = 100, nullable = false)
