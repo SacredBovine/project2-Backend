@@ -12,30 +12,26 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-
-
 @Entity
-public class Portfolio {
-	
-	
+public class Order {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(nullable = false, name="asset_id")
-	@JsonIgnoreProperties("users")
 	private Asset asset;
 	
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
 	@JoinColumn(nullable = false, name="user_id")
-	@JsonIgnoreProperties("assets")
+	@JsonIgnoreProperties("orders")
 	private User user;
 	
 	@Column(nullable = false)
 	private double quantity;
 
-	public Portfolio(int id, Asset asset, User user, double quantity) {
+	public Order(int id, Asset asset, User user, double quantity) {
 		super();
 		this.id = id;
 		this.asset = asset;
@@ -43,14 +39,14 @@ public class Portfolio {
 		this.quantity = quantity;
 	}
 
-	public Portfolio(Asset asset, User user, double quantity) {
+	public Order(Asset asset, User user, double quantity) {
 		super();
 		this.asset = asset;
 		this.user = user;
 		this.quantity = quantity;
 	}
 
-	public Portfolio() {
+	public Order() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -108,7 +104,7 @@ public class Portfolio {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Portfolio other = (Portfolio) obj;
+		Order other = (Order) obj;
 		if (asset == null) {
 			if (other.asset != null)
 				return false;
@@ -128,9 +124,10 @@ public class Portfolio {
 
 	@Override
 	public String toString() {
-		return "Portfolio [id=" + id + ", asset=" + asset + ", user=" + user + ", quantity=" + quantity + "]";
+		return "Order [id=" + id + ", asset=" + asset + ", user=" + user + ", quantity=" + quantity + "]";
 	}
-
+	
+	
 	
 	
 }

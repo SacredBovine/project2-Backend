@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.revature.models.Asset;
 import com.revature.models.Portfolio;
 import com.revature.models.User;
 import com.revature.repos.PortfolioDAO;
@@ -49,6 +50,11 @@ public class PortfolioService {
 	public void deletePortfolio(int id) {
 		Portfolio portfolio = findById(id);
 		portfolioDAO.delete(portfolio);
+	}
+
+
+	public List<Portfolio> findAllPortfolio() {
+		return portfolioDAO.findAll();
 	}
 	
 }

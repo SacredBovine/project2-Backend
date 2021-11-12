@@ -1,42 +1,91 @@
 package com.revature.models;
 
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+
+
 @Entity
 public class Asset {
 
-	public Asset() {
-		super();
-	}
-	public Asset(int rank, String symbol, String name, double priceUsd) {
-		super();
-		this.rank = rank;
-		this.symbol = symbol;
-		this.name = name;
-		this.priceUsd = priceUsd;
-	}
-	public Asset(int id, int rank, String symbol, String name, double priceUsd) {
-		super();
-		this.id = id;
-		this.rank = rank;
-		this.symbol = symbol;
-		this.name = name;
-		this.priceUsd = priceUsd;
-	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+    @Column(nullable = false, length=100)
+    private String name;
+    private double price;
 	@Column(nullable = false)
 	private int rank;
     @Column(nullable = false, length=3)
     private String symbol;
-    @Column(nullable = false, length=100)
-    private String name;
-    private double priceUsd;
+    
+	public Asset(int id, String name, double price, int rank, String symbol) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.rank = rank;
+		this.symbol = symbol;
+	}
+
+	public Asset(String name, double price, int rank, String symbol) {
+		super();
+		this.name = name;
+		this.price = price;
+		this.rank = rank;
+		this.symbol = symbol;
+	}
+
+	public Asset() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public int getRank() {
+		return rank;
+	}
+
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
+
+	public String getSymbol() {
+		return symbol;
+	}
+
+	public void setSymbol(String symbol) {
+		this.symbol = symbol;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -44,12 +93,13 @@ public class Asset {
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		long temp;
-		temp = Double.doubleToLongBits(priceUsd);
+		temp = Double.doubleToLongBits(price);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + rank;
 		result = prime * result + ((symbol == null) ? 0 : symbol.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -66,7 +116,7 @@ public class Asset {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (Double.doubleToLongBits(priceUsd) != Double.doubleToLongBits(other.priceUsd))
+		if (Double.doubleToLongBits(price) != Double.doubleToLongBits(other.price))
 			return false;
 		if (rank != other.rank)
 			return false;
@@ -77,48 +127,12 @@ public class Asset {
 			return false;
 		return true;
 	}
-	public int getId() {
-		return id;
-	}
-	public int getRank() {
-		return rank;
-	}
-	public String getSymbol() {
-		return symbol;
-	}
-	public String getName() {
-		return name;
-	}
-	public double getPriceUsd() {
-		return priceUsd;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public void setRank(int rank) {
-		this.rank = rank;
-	}
-	public void setSymbol(String symbol) {
-		this.symbol = symbol;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public void setPriceUsd(double priceUsd) {
-		this.priceUsd = priceUsd;
-	}
+
 	@Override
 	public String toString() {
-		return "Asset [id=" + id + ", rank=" + rank + ", symbol=" + symbol + ", name=" + name + ", priceUsd=" + priceUsd
+		return "Asset [id=" + id + ", name=" + name + ", price=" + price + ", rank=" + rank + ", symbol=" + symbol
 				+ "]";
 	}
+  
     
-    /*private double supply;
-    private double maxSupply;
-    private double marketCapUsd;
-    private double volumeUsd24Hr;
-    private double changePercent24Hr;
-    private double vwap24Hr;*/
-
-	
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import com.revature.models.Asset;
 
 @RestController
 @RequestMapping(value="/asset")
+@CrossOrigin
 public class AssetController {
 	
 	private AssetService assetService;
@@ -39,10 +41,17 @@ public class AssetController {
 	}
 	
 	@PostMapping
-	@PutMapping
-	public ResponseEntity<Asset> addAsset(@RequestBody Asset asset){
+	public ResponseEntity<List<Asset>> addAsset(@RequestBody Asset asset){
+		System.out.println(asset.toString());
 		assetService.addOrUpdateAsset(asset);
-		return ResponseEntity.status(201).build();
+		return ResponseEntity.status(200).body(assetService.findAllAssets());
+	}
+	
+	@PutMapping
+	public ResponseEntity<List<Asset>> updateAsset(@RequestBody Asset asset){
+		System.out.println(asset.toString());
+		assetService.addOrUpdateAsset(asset);
+		return ResponseEntity.status(201).body(assetService.findAllAssets());
 	}
 	
 	@DeleteMapping("/{id}")
@@ -50,7 +59,5 @@ public class AssetController {
 		assetService.deleteAsset(id);
 		return ResponseEntity.status(201).build();
 	}
-	
-	
 	
 }

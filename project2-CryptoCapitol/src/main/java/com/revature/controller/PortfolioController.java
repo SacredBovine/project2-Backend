@@ -3,8 +3,13 @@ package com.revature.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,10 +27,34 @@ public class PortfolioController {
 		this.portfolioService = portfolioService;
 	}
 	
+	@GetMapping
+	public List<Portfolio> findAllPortfolios() {
+		return portfolioService.findAllPortfolio();
+	}
+	
 	@GetMapping("/{userid}")
 	public List<Portfolio> findPortfolioByUserId(@PathVariable("userid") int userId){
 		return portfolioService.findPortfolioByUser(userId);
 	}
 	
+	@PostMapping
+	public ResponseEntity<List<Portfolio>> addPortfolio(@RequestBody Portfolio Portfolio){
+		System.out.println(Portfolio.toString());
+		portfolioService.addOrUpdatePortfolio(Portfolio);
+		return ResponseEntity.status(200).body(portfolioService.findAllPortfolio());
+	}
+	
+	@PutMapping
+	public ResponseEntity<List<Portfolio>> updatePortfolio(@RequestBody Portfolio Portfolio){
+		System.out.println(Portfolio.toString());
+		portfolioService.addOrUpdatePortfolio(Portfolio);
+		return ResponseEntity.status(201).body(portfolioService.findAllPortfolio());
+	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Portfolio> deletePortfolio(@PathVariable("id") int id){
+		portfolioService.deletePortfolio(id);
+		return ResponseEntity.status(201).build();
+	}
 	
 }

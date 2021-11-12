@@ -1,0 +1,7 @@
+{
+    "userName":"thesky312",
+    "password":"123",
+    "firstName":"Can",
+    "lastName":"Nguyen",
+    "email":"c@"
+}
