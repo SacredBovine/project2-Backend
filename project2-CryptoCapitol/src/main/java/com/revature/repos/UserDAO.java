@@ -9,6 +9,6 @@ import com.revature.models.User;
 @Repository
 public interface UserDAO extends JpaRepository<User, Integer>{
 	
-	@Query("SELECT user FROM User user WHERE user.email = ?1")
-	public User findByEmail(String email);
+	@Query("SELECT user FROM User user WHERE user.userName = ?1")
+	public User findByUserName(String userName);
 }
