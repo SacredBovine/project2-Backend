@@ -33,5 +33,8 @@ public class AssetService {
 		Asset asset = findAssetById(id);
 		assetDAO.delete(asset);
 	}
+	public Asset findBySymbol(String symbol) {
+		return assetDAO.findBySymbol(symbol).get();
+	}
 	
 }

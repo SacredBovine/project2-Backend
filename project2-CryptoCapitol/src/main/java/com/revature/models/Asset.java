@@ -1,37 +1,38 @@
 package com.revature.models;
 
-
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.SessionScope;
 
-
-
+@Component
+@SessionScope
 @Entity
 public class Asset {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-    @Column(nullable = false, length=100)
-    private String name;
-    private double price;
+  @Column(nullable = false, length=100)
+  private String name;
+  private double price;
 	@Column(nullable = false)
 	private int rank;
-    @Column(nullable = false, length=3)
-    private String symbol;
+  @Column(nullable = false, length=3)
+  private String symbol;
     
 	public Asset(int id, String name, double price, int rank, String symbol) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.price = price;
-		this.rank = rank;
-		this.symbol = symbol;
-	}
+	@Column(nullable = false)
+	private int rank;
+    @Column(nullable = false, length=3, unique=true)
+    private String symbol;
+    @Column(nullable = false, length=100)
+    private String name;
+    private double priceUsd;
+    
 
 	public Asset(String name, double price, int rank, String symbol) {
 		super();
@@ -133,6 +134,5 @@ public class Asset {
 		return "Asset [id=" + id + ", name=" + name + ", price=" + price + ", rank=" + rank + ", symbol=" + symbol
 				+ "]";
 	}
-  
-    
+
 }

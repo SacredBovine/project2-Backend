@@ -1,5 +1,6 @@
 package com.revature.models;
 
+
 import java.util.List;
 
 import javax.persistence.Column;
@@ -14,17 +15,53 @@ import org.hibernate.annotations.NaturalId;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity
+import javax.persistence.*;
+import org.hibernate.annotations.NaturalId;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.context.annotation.SessionScope;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
+
 public class User {
 
-	
+
+@Component
+@SessionAttributes("user")
+@Entity
+@Table (name="users")
+public class User {
+
+	public User() {
+		super();
+	}
+	public User(String userName, String password, String firstName, String lastName, String email) {
+		super();
+		this.userName = userName;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+	}
+	public User(int userId, String userName, String password, String firstName, String lastName, String email) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int userId;
 	@NaturalId
 	@Column(length = 25, unique = true, nullable = false)
 	private String userName;
-	@Column(length = 64, nullable = false)
+	@Column(length = 128, nullable = false)
+	//@JsonIgnore
 	private String password;
 	@Column(length = 100, nullable = false)
 	private String firstName;
@@ -47,7 +84,7 @@ public class User {
 		this.lastName = lastName;
 		this.email = email;
 		this.orders = orders;
-	}
+  }
 
 	public User(String userName, String password, String firstName, String lastName, String email, List<Order> orders) {
 		super();
@@ -58,12 +95,6 @@ public class User {
 		this.email = email;
 		this.orders = orders;
 	}
-
-	public User() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
 	public int getUserId() {
 		return userId;
 	}
@@ -119,6 +150,7 @@ public class User {
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
 	}
+
 
 	@Override
 	public int hashCode() {
@@ -184,7 +216,4 @@ public class User {
 				+ firstName + ", lastName=" + lastName + ", email=" + email + "]";
 	}
 
-	
-	
-	
 }

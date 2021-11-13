@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 public class Portfolio {
 	
+
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,6 +35,7 @@ public class Portfolio {
 	
 	@Column(nullable = false)
 	private double quantity;
+
 
 	public Portfolio(int id, Asset asset, User user, double quantity) {
 		super();
@@ -132,5 +134,9 @@ public class Portfolio {
 	}
 
 	
+	@Override
+	public String toString() {
+		return "Portfolio [id=" + id + ", asset=" + asset + ", user=" + user + ", quantity=" + quantity + "]";
+	}
 	
 }
