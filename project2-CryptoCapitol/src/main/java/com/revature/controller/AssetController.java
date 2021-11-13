@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.annotation.SessionScope;
-
 import com.revature.service.AssetService;
 import com.revature.models.Asset;
 
@@ -41,7 +40,7 @@ public class AssetController {
 		Asset asset = assetService.findAssetById(id);
 		return asset;
 	}
-	
+
 	@GetMapping("/{symbol}")
 	public Asset oneAsset(@PathVariable("symbol") String symbol){
 		Asset asset = assetService.findBySymbol(symbol);

@@ -1,5 +1,6 @@
 package com.revature.controller;
 
+
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.SessionScope;
 
 import com.revature.service.*;
+import com.revature.service.UserService;
 import com.revature.models.Portfolio;
 import com.revature.models.User;
 import com.revature.models.UserDTO;
@@ -27,6 +29,7 @@ public class UserController {
 	private PortfolioService portfolioService;
 	private User user;
 	private UserDTO userDto;
+  private UserService userService;
 	
 	@Autowired
 	public UserController(
@@ -43,13 +46,14 @@ public class UserController {
 		this.loginService = loginService;
 		this.httpSession = httpSession;
 		this.portfolioService = portfolioService;
-	}
+  }
 	
 	@GetMapping
 	public List<User> findAllUsers(){
+
 		System.out.println(this.httpSession.getAttribute("user"));
 		return userService.findAllUsers();
-		
+
 	}
 	
 	@PostMapping
@@ -59,6 +63,7 @@ public class UserController {
 	}
 	@PutMapping
 	public ResponseEntity<User> addUpdate(@RequestBody User user){
+
 		if(this.httpSession.getAttribute("user")!=null) {
 			userService.addOrUpdateUser(user);
 			return ResponseEntity.status(200).build();

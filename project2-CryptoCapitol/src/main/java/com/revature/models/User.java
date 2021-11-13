@@ -1,13 +1,15 @@
 package com.revature.models;
 
 import javax.persistence.*;
-
 import org.hibernate.annotations.NaturalId;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.context.annotation.SessionScope;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
+public class User {
+
 
 @Component
 @SessionAttributes("user")
@@ -15,21 +17,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table (name="users")
 public class User {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int userId;
-	@NaturalId
-	@Column(length = 25, unique = true, nullable = false)
-	private String userName;
-	@Column(length = 64, nullable = false)
-	//@JsonIgnore
-	private String password;
-	@Column(length = 100, nullable = false)
-	private String firstName;
-	@Column(length = 100, nullable = false)
-	private String lastName;
-	@Column(length = 150, nullable = false)
-	private String email;
 	
 	public User() {
 		super();
@@ -51,7 +38,23 @@ public class User {
 		this.lastName = lastName;
 		this.email = email;
 	}
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int userId;
+	@NaturalId
+	@Column(length = 25, unique = true, nullable = false)
+	private String userName;
+	@Column(length = 128, nullable = false)
+	//@JsonIgnore
+	private String password;
+	@Column(length = 100, nullable = false)
+	private String firstName;
+	@Column(length = 100, nullable = false)
+	private String lastName;
+	@Column(length = 150, nullable = false)
+	private String email;
+
 	public int getUserId() {
 		return userId;
 	}
