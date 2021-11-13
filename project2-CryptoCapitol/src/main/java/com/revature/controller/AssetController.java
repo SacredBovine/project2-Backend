@@ -14,14 +14,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.annotation.SessionScope;
-
 import com.revature.service.AssetService;
 import com.revature.models.Asset;
 
 @RestController
-@CrossOrigin(origins ="http://localhost:4200")
 @SessionScope
 @RequestMapping(value="/asset")
+@CrossOrigin(origins ="http://localhost:4200")
 public class AssetController {
 	
 	private AssetService assetService;
@@ -41,7 +40,7 @@ public class AssetController {
 		Asset asset = assetService.findAssetById(id);
 		return asset;
 	}
-	
+
 	@GetMapping("/{symbol}")
 	public Asset oneAsset(@PathVariable("symbol") String symbol){
 		Asset asset = assetService.findBySymbol(symbol);
@@ -49,10 +48,17 @@ public class AssetController {
 	}
 	
 	@PostMapping
-	@PutMapping
-	public ResponseEntity<Asset> addAsset(@RequestBody Asset asset){
+	public ResponseEntity<List<Asset>> addAsset(@RequestBody Asset asset){
+		System.out.println(asset.toString());
 		assetService.addOrUpdateAsset(asset);
-		return ResponseEntity.status(201).build();
+		return ResponseEntity.status(200).body(assetService.findAllAssets());
+	}
+	
+	@PutMapping
+	public ResponseEntity<List<Asset>> updateAsset(@RequestBody Asset asset){
+		System.out.println(asset.toString());
+		assetService.addOrUpdateAsset(asset);
+		return ResponseEntity.status(201).body(assetService.findAllAssets());
 	}
 	
 	@DeleteMapping("/{id}")
