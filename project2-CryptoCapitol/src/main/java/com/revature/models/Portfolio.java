@@ -128,11 +128,6 @@ public class Portfolio {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Portfolio [id=" + id + ", asset=" + asset + ", user=" + user + ", quantity=" + quantity + "]";
-	}
-
 	
 	@Override
 	public String toString() {

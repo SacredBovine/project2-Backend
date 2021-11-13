@@ -18,10 +18,9 @@ import com.revature.service.AssetService;
 import com.revature.models.Asset;
 
 @RestController
-@CrossOrigin(origins ="http://localhost:4200")
 @SessionScope
 @RequestMapping(value="/asset")
-@CrossOrigin
+@CrossOrigin(origins ="http://localhost:4200")
 public class AssetController {
 	
 	private AssetService assetService;

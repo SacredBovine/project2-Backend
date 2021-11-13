@@ -16,21 +16,13 @@ public class Asset {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-  @Column(nullable = false, length=100)
-  private String name;
-  private double price;
+	@Column(nullable = false, length=100)
+	private String name;
+	private double price;
 	@Column(nullable = false)
 	private int rank;
-  @Column(nullable = false, length=3)
-  private String symbol;
-    
-	public Asset(int id, String name, double price, int rank, String symbol) {
-	@Column(nullable = false)
-	private int rank;
-    @Column(nullable = false, length=3, unique=true)
-    private String symbol;
-    @Column(nullable = false, length=100)
-    private String name;
+	@Column(nullable = false, length=3)
+	private String symbol; 
     private double priceUsd;
     
 

@@ -43,7 +43,6 @@ public class UserController {
 	private PortfolioService portfolioService;
 	private User user;
 	private UserDTO userDto;
-  private UserService userService;
 	
 	@Autowired
 	public UserController(

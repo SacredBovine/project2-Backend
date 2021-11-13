@@ -23,10 +23,6 @@ import org.springframework.web.context.annotation.SessionScope;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
-
-public class User {
-
-
 @Component
 @SessionAttributes("user")
 @Entity
