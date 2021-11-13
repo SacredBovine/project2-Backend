@@ -3,8 +3,10 @@ package com.revature.models;
 import java.util.Objects;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.SessionScope;
 
 @Component
+@SessionScope
 public class UserDTO {
 	
 	private int userId;

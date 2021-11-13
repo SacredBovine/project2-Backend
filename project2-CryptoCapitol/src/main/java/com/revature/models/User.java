@@ -3,9 +3,14 @@ package com.revature.models;
 import javax.persistence.*;
 
 import org.hibernate.annotations.NaturalId;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.context.annotation.SessionScope;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+@Component
+@SessionAttributes("user")
 @Entity
 @Table (name="users")
 public class User {

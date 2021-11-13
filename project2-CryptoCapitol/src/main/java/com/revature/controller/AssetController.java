@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.annotation.SessionScope;
 
 import com.revature.service.AssetService;
 import com.revature.models.Asset;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins ="http://localhost:4200")
+@SessionScope
 @RequestMapping(value="/asset")
 public class AssetController {
 	

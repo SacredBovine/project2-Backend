@@ -14,7 +14,7 @@ import com.revature.repos.UserDAO;
 public class LoginService {
 
 	private UserDAO userDao;
-	private HttpSession httpSession;
+	public HttpSession httpSession;
 	
 	@Autowired
 	public LoginService(UserDAO userDao, HttpSession httpSession) {
@@ -22,11 +22,18 @@ public class LoginService {
 		this.userDao = userDao;
 		this.httpSession = httpSession;
 	}
-		
-	public User login(UserDTO userDto) {
+	
+	public UserDTO login(UserDTO userDto) {
 		User user = userDao.findByUserName(userDto.getUserName());	
 		if(user!=null && (String.valueOf(userDto.getPassword().hashCode()).equals(String.valueOf(user.getPassword())))) {
-			return user;
+			userDto.setUserId(user.getUserId());
+			userDto.setFirstName(user.getFirstName());
+			userDto.setLastName(user.getLastName());
+			userDto.setPassword(null);
+			userDto.setEmail(user.getEmail());
+			this.httpSession.setMaxInactiveInterval(300);
+			this.httpSession.setAttribute("user", user);
+			return userDto;
 		}
 		return null;
 	}

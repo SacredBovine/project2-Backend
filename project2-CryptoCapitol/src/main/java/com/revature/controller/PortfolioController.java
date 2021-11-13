@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.annotation.SessionScope;
 
 import com.revature.models.Asset;
 import com.revature.models.Portfolio;
@@ -21,7 +22,8 @@ import com.revature.service.PortfolioService;
 import com.revature.service.UserService;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins ="http://localhost:4200")
+@SessionScope
 @RequestMapping(value="/portfolio")
 public class PortfolioController {
 
