@@ -5,8 +5,8 @@ import com.revature.repos.UserDAO;
 import com.revature.utils.PassEncrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+
 
 @Service
 public class UserService {
@@ -19,7 +19,7 @@ public class UserService {
 		super();
 		this.userDao = userDao;
 	}
-	
+
 	public List<User> findAllUsers(){
 		return userDao.findAll();
 	}
@@ -29,7 +29,12 @@ public class UserService {
 	}
 	
 	public void addOrUpdateUser(User user) {
-		User hashedPassUser = new User(user.getUserName(), PassEncrypt.getHash(user.getPassword().getBytes(), "SHA-512"), user.getFirstName(), user.getLastName(), user.getEmail());
+    User hashedPassUser = new User(user.getUserName(), PassEncrypt.getHash(user.getPassword().getBytes(), "SHA-512"), user.getFirstName(), user.getLastName(), user.getEmail());
 		userDao.save(hashedPassUser);
 	}
+	
+	public User findByUserName(String userName) {
+		return userDao.findByUserName(userName);
+	}
+	
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,11 +13,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.context.annotation.SessionScope;
 import com.revature.service.AssetService;
 import com.revature.models.Asset;
 
 @RestController
+@CrossOrigin(origins ="http://localhost:4200")
+@SessionScope
 @RequestMapping(value="/asset")
 public class AssetController {
 	
@@ -37,6 +40,7 @@ public class AssetController {
 		Asset asset = assetService.findAssetById(id);
 		return asset;
 	}
+
 	@GetMapping("/{symbol}")
 	public Asset oneAsset(@PathVariable("symbol") String symbol){
 		Asset asset = assetService.findBySymbol(symbol);
@@ -55,7 +59,5 @@ public class AssetController {
 		assetService.deleteAsset(id);
 		return ResponseEntity.status(201).build();
 	}
-	
-	
 	
 }
