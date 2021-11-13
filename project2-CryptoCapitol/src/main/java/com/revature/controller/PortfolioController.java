@@ -1,9 +1,11 @@
 package com.revature.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,25 +42,34 @@ public class PortfolioController {
 		this.assetService = assetService;
 	}
 	
+	@GetMapping
+	public List<Portfolio> findAllPortfolios() {
+		return portfolioService.findAllPortfolio();
+	}
+	
 	@GetMapping("/{userid}")
 	public List<Portfolio> findPortfolioByUserId(@PathVariable("userid") int userId){
 		return portfolioService.findPortfolioByUser(userId);
 	}
 	
 	@PostMapping
-	public ResponseEntity<Asset> addAsset(@RequestBody PortfolioDTO portfolioDTO){
-		
-		Portfolio portfolio = new Portfolio();
-		
-		portfolio.setQuantity(portfolioDTO.quantity);
-		
-		User user = userService.findById(portfolioDTO.userId);
-		portfolio.setUser(user);
-		
-		Asset asset = assetService.findBySymbol(portfolioDTO.assetSymbol);
-		portfolio.setAsset(asset);
-		
-		portfolioService.addOrUpdatePortfolio(portfolio);
+	public ResponseEntity<List<Portfolio>> addPortfolio(@RequestBody Portfolio Portfolio){
+		System.out.println(Portfolio.toString());
+		portfolioService.addOrUpdatePortfolio(Portfolio);
+		return ResponseEntity.status(200).body(portfolioService.findAllPortfolio());
+	}
+	
+	@PutMapping
+	public ResponseEntity<List<Portfolio>> updatePortfolio(@RequestBody Portfolio Portfolio){
+		System.out.println(Portfolio.toString());
+		portfolioService.addOrUpdatePortfolio(Portfolio);
+		return ResponseEntity.status(201).body(portfolioService.findAllPortfolio());
+	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Portfolio> deletePortfolio(@PathVariable("id") int id){
+		portfolioService.deletePortfolio(id);
 		return ResponseEntity.status(201).build();
 	}
+
 }

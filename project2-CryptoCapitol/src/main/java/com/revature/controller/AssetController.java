@@ -21,6 +21,7 @@ import com.revature.models.Asset;
 @CrossOrigin(origins ="http://localhost:4200")
 @SessionScope
 @RequestMapping(value="/asset")
+@CrossOrigin
 public class AssetController {
 	
 	private AssetService assetService;
@@ -48,10 +49,17 @@ public class AssetController {
 	}
 	
 	@PostMapping
-	@PutMapping
-	public ResponseEntity<Asset> addAsset(@RequestBody Asset asset){
+	public ResponseEntity<List<Asset>> addAsset(@RequestBody Asset asset){
+		System.out.println(asset.toString());
 		assetService.addOrUpdateAsset(asset);
-		return ResponseEntity.status(201).build();
+		return ResponseEntity.status(200).body(assetService.findAllAssets());
+	}
+	
+	@PutMapping
+	public ResponseEntity<List<Asset>> updateAsset(@RequestBody Asset asset){
+		System.out.println(asset.toString());
+		assetService.addOrUpdateAsset(asset);
+		return ResponseEntity.status(201).body(assetService.findAllAssets());
 	}
 	
 	@DeleteMapping("/{id}")
