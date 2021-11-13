@@ -9,6 +9,17 @@ import javax.persistence.Id;
 @Entity
 public class Asset {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	@Column(nullable = false)
+	private int rank;
+    @Column(nullable = false, length=3, unique=true)
+    private String symbol;
+    @Column(nullable = false, length=100)
+    private String name;
+    private double priceUsd;
+    
 	public Asset() {
 		super();
 	}
@@ -27,56 +38,7 @@ public class Asset {
 		this.name = name;
 		this.priceUsd = priceUsd;
 	}
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	@Column(nullable = false)
-	private int rank;
-    @Column(nullable = false, length=3, unique=true)
-    private String symbol;
-    @Column(nullable = false, length=100)
-    private String name;
-    private double priceUsd;
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(priceUsd);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + rank;
-		result = prime * result + ((symbol == null) ? 0 : symbol.hashCode());
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Asset other = (Asset) obj;
-		if (id != other.id)
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (Double.doubleToLongBits(priceUsd) != Double.doubleToLongBits(other.priceUsd))
-			return false;
-		if (rank != other.rank)
-			return false;
-		if (symbol == null) {
-			if (other.symbol != null)
-				return false;
-		} else if (!symbol.equals(other.symbol))
-			return false;
-		return true;
-	}
+	
 	public int getId() {
 		return id;
 	}
@@ -107,18 +69,53 @@ public class Asset {
 	public void setPriceUsd(double priceUsd) {
 		this.priceUsd = priceUsd;
 	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(priceUsd);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + rank;
+		result = prime * result + ((symbol == null) ? 0 : symbol.hashCode());
+		return result;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Asset other = (Asset) obj;
+		if (id != other.id)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (Double.doubleToLongBits(priceUsd) != Double.doubleToLongBits(other.priceUsd))
+			return false;
+		if (rank != other.rank)
+			return false;
+		if (symbol == null) {
+			if (other.symbol != null)
+				return false;
+		} else if (!symbol.equals(other.symbol))
+			return false;
+		return true;
+	}
+	
 	@Override
 	public String toString() {
 		return "Asset [id=" + id + ", rank=" + rank + ", symbol=" + symbol + ", name=" + name + ", priceUsd=" + priceUsd
 				+ "]";
 	}
-    
-    /*private double supply;
-    private double maxSupply;
-    private double marketCapUsd;
-    private double volumeUsd24Hr;
-    private double changePercent24Hr;
-    private double vwap24Hr;*/
-
-	
+    	
 }
