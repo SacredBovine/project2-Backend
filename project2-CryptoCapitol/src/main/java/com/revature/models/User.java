@@ -1,33 +1,11 @@
 package com.revature.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 import org.hibernate.annotations.NaturalId;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.*;
 
 @Entity
 public class User {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int userId;
-	@NaturalId
-	@Column(length = 25, unique = true, nullable = false)
-	private String userName;
-	@Column(length = 64, nullable = false)
-	//@JsonIgnore
-	private String password;
-	@Column(length = 100, nullable = false)
-	private String firstName;
-	@Column(length = 100, nullable = false)
-	private String lastName;
-	@Column(length = 150, nullable = false)
-	private String email;
 	
 	public User() {
 		super();
@@ -49,7 +27,23 @@ public class User {
 		this.lastName = lastName;
 		this.email = email;
 	}
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int userId;
+	@NaturalId
+	@Column(length = 25, unique = true, nullable = false)
+	private String userName;
+	@Column(length = 128, nullable = false)
+	//@JsonIgnore
+	private String password;
+	@Column(length = 100, nullable = false)
+	private String firstName;
+	@Column(length = 100, nullable = false)
+	private String lastName;
+	@Column(length = 150, nullable = false)
+	private String email;
+
 	public int getUserId() {
 		return userId;
 	}
