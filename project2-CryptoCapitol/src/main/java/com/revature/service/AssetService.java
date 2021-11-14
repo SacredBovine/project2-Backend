@@ -1,6 +1,7 @@
 package com.revature.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,8 +34,8 @@ public class AssetService {
 		Asset asset = findAssetById(id);
 		assetDAO.delete(asset);
 	}
-	public Asset findBySymbol(String symbol) {
-		return assetDAO.findBySymbol(symbol).get();
+	public Optional<Asset> findBySymbol(String symbol) {
+		return assetDAO.findBySymbol(symbol);
 	}
 	
 }

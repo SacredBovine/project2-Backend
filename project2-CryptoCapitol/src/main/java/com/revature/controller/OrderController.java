@@ -51,19 +51,10 @@ public class OrderController {
 	@PostMapping
 	public ResponseEntity<User> addOrder(@RequestBody OrderFrontEnd orderF){
 		System.out.println("tao ne:   "+orderF.toString());
-		int id = orderF.userId;
-		assetService.addOrUpdateAsset(orderF.asset);
-		Order order = new Order(orderF.asset,userService.findById(id),orderF.quantity);
-		orderService.addOrUpdateOrder(order);
-		return ResponseEntity.status(200).body(userService.findById(id));
+		orderService.addOrUpdateOrder(orderF);
+		return ResponseEntity.status(200).body(userService.findById(orderF.userId));
 	}
 	
-	@PutMapping
-	public ResponseEntity<List<Order>> updateOrder(@RequestBody Order order){
-		System.out.println(order.toString());
-		orderService.addOrUpdateOrder(order);
-		return ResponseEntity.status(201).body(orderService.findAllOrders());
-	}
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Order> deleteOrder(@PathVariable("id") int id){

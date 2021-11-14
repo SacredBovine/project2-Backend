@@ -80,9 +80,9 @@ public class UserController {
 		userService.addOrUpdateUser(user);
 		return ResponseEntity.status(201).body(userService.findAllUsers());
 	}
+	
 	@PutMapping
 	public ResponseEntity<User> addUpdate(@RequestBody User user){
-
 		if(this.httpSession.getAttribute("user")!=null) {
 			userService.addOrUpdateUser(user);
 			return ResponseEntity.status(200).build();
@@ -93,38 +93,22 @@ public class UserController {
 	}
 	
 	 @PostMapping("/login")
-	 public ResponseEntity login(@RequestBody UserDTO userDto){
-		//System.out.println(this.httpSession.getAttribute("user"));
+	 public ResponseEntity<UserDTO> login(@RequestBody UserDTO userDto){
 		userDto = loginService.login(userDto);
 		if (userDto != null) {
-			return new ResponseEntity<>(userDto, HttpStatus.ACCEPTED);
+			return ResponseEntity.status(HttpStatus.ACCEPTED).body(userDto);
 		} else {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 		}
 	 }
 	 
-	 @GetMapping("/login")
-	 public ResponseEntity login(){
-		 this.httpSession.invalidate();
-		 return new ResponseEntity<>(userDto, HttpStatus.ACCEPTED);
+	 @GetMapping("/logout")
+	 public ResponseEntity logout(){
+		 this.loginService.logout();
+		 return ResponseEntity.status(HttpStatus.ACCEPTED).build();
 	
 	 }
-	 
-/*	 private String getJWTToken(String userName) {
-			String key = "AstonVanquish";
-			List<GrantedAuthority> grantedAuthorities = AuthorityUtils
-					.commaSeparatedStringToAuthorityList("ROLE_USER");
-			
-			String token = Jwts
-					.builder()
-					.setId("softtekJWT")
-					.setSubject(userName)
-					.setIssuedAt(new Date(System.currentTimeMillis()))
-					.setExpiration(new Date(System.currentTimeMillis() + 300000))
-					.signWith(SignatureAlgorithm.HS512,
-							secretKey.getBytes()).compact();
 
-			return "Bearer " + token;
-		}*/
-	
+	 
+
 }

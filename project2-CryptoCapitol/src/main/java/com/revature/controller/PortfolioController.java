@@ -18,7 +18,6 @@ import org.springframework.web.context.annotation.SessionScope;
 
 import com.revature.models.Asset;
 import com.revature.models.Portfolio;
-import com.revature.models.PortfolioDTO;
 import com.revature.models.User;
 import com.revature.service.AssetService;
 import com.revature.service.PortfolioService;

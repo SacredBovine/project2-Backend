@@ -17,76 +17,90 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 public class Portfolio {
 	
+	public Portfolio() {
+		super();
+	}
 
+	public Portfolio(int id, Asset asset, User user, double quantity, double investment) {
+		super();
+		this.id = id;
+		this.asset = asset;
+		this.user = user;
+		this.quantity = quantity;
+		this.investment = investment;
+	}
 	
+	public Portfolio(Asset asset, User user, double quantity, double investment) {
+		super();
+		this.asset = asset;
+		this.user = user;
+		this.quantity = quantity;
+		this.investment = investment;
+	}
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
 	@JoinColumn(nullable = false, name="asset_id")
-	@JsonIgnoreProperties("users")
 	private Asset asset;
 	
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
 	@JoinColumn(nullable = false, name="user_id")
-	@JsonIgnoreProperties("assets")
 	private User user;
 	
 	@Column(nullable = false)
 	private double quantity;
-
-
-	public Portfolio(int id, Asset asset, User user, double quantity) {
-		super();
-		this.id = id;
-		this.asset = asset;
-		this.user = user;
-		this.quantity = quantity;
-	}
-
-	public Portfolio(Asset asset, User user, double quantity) {
-		super();
-		this.asset = asset;
-		this.user = user;
-		this.quantity = quantity;
-	}
-
-	public Portfolio() {
-		super();
-		// TODO Auto-generated constructor stub
+	
+	@Column(nullable = false)
+	private double investment;
+	
+	@Override
+	public String toString() {
+		return "Portfolio [id=" + id + ", asset=" + asset + ", user=" + user + ", quantity=" + quantity
+				+ ", investment=" + investment + "]";
 	}
 
 	public int getId() {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public Asset getAsset() {
 		return asset;
-	}
-
-	public void setAsset(Asset asset) {
-		this.asset = asset;
 	}
 
 	public User getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 	public double getQuantity() {
 		return quantity;
 	}
 
+	public double getInvestment() {
+		return investment;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setAsset(Asset asset) {
+		this.asset = asset;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	public void setQuantity(double quantity) {
 		this.quantity = quantity;
+	}
+
+	public void setInvestment(double investment) {
+		this.investment = investment;
 	}
 
 	@Override
@@ -96,6 +110,8 @@ public class Portfolio {
 		result = prime * result + ((asset == null) ? 0 : asset.hashCode());
 		result = prime * result + id;
 		long temp;
+		temp = Double.doubleToLongBits(investment);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(quantity);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
@@ -118,6 +134,8 @@ public class Portfolio {
 			return false;
 		if (id != other.id)
 			return false;
+		if (Double.doubleToLongBits(investment) != Double.doubleToLongBits(other.investment))
+			return false;
 		if (Double.doubleToLongBits(quantity) != Double.doubleToLongBits(other.quantity))
 			return false;
 		if (user == null) {
@@ -127,11 +145,6 @@ public class Portfolio {
 			return false;
 		return true;
 	}
-
 	
-	@Override
-	public String toString() {
-		return "Portfolio [id=" + id + ", asset=" + asset + ", user=" + user + ", quantity=" + quantity + "]";
-	}
 	
 }

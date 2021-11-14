@@ -1,3 +1,4 @@
+
 package com.revature.service;
 
 import com.revature.models.UserDTO;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.revature.models.User;
 import com.revature.repos.UserDAO;
+import com.revature.utils.PassEncrypt;
 
 @Service
 public class LoginService {
@@ -25,7 +27,10 @@ public class LoginService {
 	
 	public UserDTO login(UserDTO userDto) {
 		User user = userDao.findByUserName(userDto.getUserName());	
-		if(user!=null && (String.valueOf(userDto.getPassword().hashCode()).equals(String.valueOf(user.getPassword())))) {
+		if(user!=null && (PassEncrypt.getHash(userDto.getPassword().getBytes(), "SHA-512").equals(String.valueOf(user.getPassword())))) {
+			
+			
+			
 			userDto.setUserId(user.getUserId());
 			userDto.setFirstName(user.getFirstName());
 			userDto.setLastName(user.getLastName());
