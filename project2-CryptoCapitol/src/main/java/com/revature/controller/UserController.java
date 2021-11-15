@@ -32,7 +32,7 @@ import com.revature.models.User;
 import com.revature.models.UserDTO;
 
 @RestController
-@CrossOrigin(origins ="http://localhost:4200")
+@CrossOrigin(origins ="http://localhost:4200", allowCredentials="true")
 @SessionScope
 @RequestMapping(value="/user")
 public class UserController {
