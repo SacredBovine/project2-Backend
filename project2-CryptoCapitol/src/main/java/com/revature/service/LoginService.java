@@ -27,10 +27,8 @@ public class LoginService {
 	
 	public UserDTO login(UserDTO userDto) {
 		User user = userDao.findByUserName(userDto.getUserName());	
+		System.out.println(user);
 		if(user!=null && (PassEncrypt.getHash(userDto.getPassword().getBytes(), "SHA-512").equals(String.valueOf(user.getPassword())))) {
-			
-			
-			
 			userDto.setUserId(user.getUserId());
 			userDto.setFirstName(user.getFirstName());
 			userDto.setLastName(user.getLastName());
