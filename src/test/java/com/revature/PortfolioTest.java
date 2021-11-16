@@ -60,7 +60,34 @@ public class PortfolioTest {
         verify(portfolioDAO, times(1)).findById(1);
     }
     
-
+    @Test
+    public void testFindAllOrder(){
+    	
+        List<Portfolio> list = new ArrayList<Portfolio>();
+        Asset asset1 = new Asset(1,"Bitcoin","BTC",1);
+        Asset asset2 = new Asset(2,"Ethereum","ETH",2); 
+        User user = new User(1,"can123","Pass1@","Can","Nguyen","can@revature.net");
+        Portfolio portfolio1 = new Portfolio(1,  asset1, user, 0.1, 6000);
+        Portfolio portfoli2 = new Portfolio(2,  asset2, user, 1, 6000) ;
+        list.add(portfolio1);
+        list.add(portfoli2);
+        when(portfolioDAO.findAll()).thenReturn(list);
+        //test
+        List<Portfolio> oList = portfolioService.findAllPortfolio();
+        assertEquals(2, oList.size());
+        verify(portfolioDAO, times(1)).findAll();
+    }
+    
+    @Test
+    public void testaddOrUpdateOrder() {
+    	
+        Asset asset2 = new Asset(2,"Ethereum","ETH",2); 
+        User user = new User(1,"can123","Pass1@","Can","Nguyen","can@revature.net");
+        Portfolio portfolio = new Portfolio(1,  asset2, user, 0.1, 6000);
+        portfolioService.addOrUpdatePortfolio(portfolio);
+        verify(portfolioDAO,times(1)).save(portfolio);
+        
+    }
 	
 	
 	

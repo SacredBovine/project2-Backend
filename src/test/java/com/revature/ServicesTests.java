@@ -69,16 +69,28 @@ public class ServicesTests {
         verify(userDao, times(1)).findById(1);
     }
     
- /*   @Test
-    public void testaddOrUpdateUser() {
+    @Test
+    public void testaddUser() {
     	
     	User user = new User(1,"can123","Pass1@","Can","Nguyen","can@revature.net");
         User hashedPassUser = new User(user.getUserName(), 
         		PassEncrypt.getHash(user.getPassword().getBytes(), "SHA-512"),
         		user.getFirstName(), user.getLastName(), user.getEmail()); 	
-        userService.addOrUpdateUser(user); 
+        userService.addUser(user); 
         verify(userDao,times(1)).save(hashedPassUser);    	
-    }*/
+    }
+    
+    @Test
+    public void testUpdateUser() {
+    	
+    	UserDTO userDto = new UserDTO(1,"Can","Nguyen","can@revature.net","can123");
+        Optional<User> hashedPassUser = Optional.of(new User(1,userDto.getUserName(), 
+        		PassEncrypt.getHash("Pass1@".getBytes(), "SHA-512"),
+        		userDto.getFirstName(), userDto.getLastName(), userDto.getEmail())); 
+        when(userDao.findById(userDto.getUserId())).thenReturn(hashedPassUser); 
+        userService.updateUser(userDto); 
+        verify(userDao,times(1)).save(hashedPassUser.get());    	
+    }
     
     @Test
     public void testFindByUserName(){
