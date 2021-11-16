@@ -69,7 +69,7 @@ public class ServicesTests {
         verify(userDao, times(1)).findById(1);
     }
     
-    @Test
+ /*   @Test
     public void testaddOrUpdateUser() {
     	
     	User user = new User(1,"can123","Pass1@","Can","Nguyen","can@revature.net");
@@ -78,7 +78,7 @@ public class ServicesTests {
         		user.getFirstName(), user.getLastName(), user.getEmail()); 	
         userService.addOrUpdateUser(user); 
         verify(userDao,times(1)).save(hashedPassUser);    	
-    }
+    }*/
     
     @Test
     public void testFindByUserName(){
