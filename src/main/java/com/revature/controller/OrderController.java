@@ -23,7 +23,7 @@ import com.revature.service.UserService;
 
 @RestController
 @RequestMapping(value="/order")
-@CrossOrigin(origins ={"http://project-2-crypto-capitol.s3-website.us-east-2.amazonaws.com", "http://localhost:4200"})
+@CrossOrigin(origins ="http:172.17.14.49:4200")
 public class OrderController {
 
 	private OrderService orderService;
