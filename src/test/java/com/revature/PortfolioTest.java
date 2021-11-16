@@ -61,7 +61,7 @@ public class PortfolioTest {
     }
     
     @Test
-    public void testFindAllOrder(){
+    public void testFindAllPortfolio(){
     	
         List<Portfolio> list = new ArrayList<Portfolio>();
         Asset asset1 = new Asset(1,"Bitcoin","BTC",1);
@@ -79,7 +79,7 @@ public class PortfolioTest {
     }
     
     @Test
-    public void testaddOrUpdateOrder() {
+    public void testaddOrUpdatePortfolio() {
     	
         Asset asset2 = new Asset(2,"Ethereum","ETH",2); 
         User user = new User(1,"can123","Pass1@","Can","Nguyen","can@revature.net");
