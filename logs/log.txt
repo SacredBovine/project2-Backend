@@ -1,0 +1,35 @@
+10:39:34.331 [] [restartedMain] INFO  c.r.Project2CryptoCapitolApplication - Starting Project2CryptoCapitolApplication using Java 1.8.0_302 on Vince-PC with PID 4528 (C:\Users\TempAdmin\Desktop\code\project2-Backend\target\classes started by TempAdmin in C:\Users\TempAdmin\Desktop\code\project2-Backend)
+10:39:34.338 [] [restartedMain] INFO  c.r.Project2CryptoCapitolApplication - No active profile set, falling back to default profiles: default
+10:39:34.481 [] [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+10:39:34.481 [] [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+10:39:36.824 [] [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+10:39:36.963 [] [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 122 ms. Found 4 JPA repository interfaces.
+10:39:38.891 [] [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8082 (http)
+10:39:38.917 [] [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
+10:39:38.918 [] [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+10:39:38.918 [] [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.54]
+10:39:39.082 [] [restartedMain] INFO  o.a.c.c.C.[.[localhost].[/crypto] - Initializing Spring embedded WebApplicationContext
+10:39:39.082 [] [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4599 ms
+10:39:39.914 [] [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+10:39:40.065 [] [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.32.Final
+10:39:40.413 [] [restartedMain] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+10:39:40.609 [] [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+10:39:41.971 [] [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+10:39:42.024 [] [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+10:39:44.770 [] [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+10:39:44.830 [] [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+10:39:46.809 [] [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+10:39:47.878 [] [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+10:39:47.896 [] [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 13 endpoint(s) beneath base path '/actuator'
+10:39:47.972 [] [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8082"]
+10:39:48.015 [] [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8082 (http) with context path '/crypto'
+10:39:48.045 [] [restartedMain] INFO  c.r.Project2CryptoCapitolApplication - Started Project2CryptoCapitolApplication in 24.039 seconds (JVM running for 27.506)
+10:40:08.393 [] [http-nio-8082-exec-1] INFO  o.a.c.c.C.[.[localhost].[/crypto] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+10:40:08.395 [] [http-nio-8082-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+10:40:08.397 [] [http-nio-8082-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+10:40:08.662 [] [http-nio-8082-exec-2] INFO  com.revature.aspects.LoggingAspect - com.revature.controller.UserController@6a653a18 invoked ResponseEntity com.revature.controller.UserController.login(UserDTO) with param UserDTO [userId=0, password=Mypa$$worD7, userName=vgcaccamo]
+10:40:08.670 [] [http-nio-8082-exec-2] INFO  com.revature.aspects.LoggingAspect - com.revature.service.LoginService@405cc620 invoked UserDTO com.revature.service.LoginService.login(UserDTO) with param UserDTO [userId=0, password=Mypa$$worD7, userName=vgcaccamo]
+10:40:08.671 [] [http-nio-8082-exec-2] INFO  com.revature.aspects.LoggingAspect - com.revature.service.LoginService@405cc620 invoked UserDTO com.revature.service.LoginService.login(UserDTO) with param UserDTO [userId=0, password=Mypa$$worD7, userName=vgcaccamo]
+10:41:10.224 [] [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+10:41:10.237 [] [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+10:41:10.253 [] [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
