@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
+@CrossOrigin(origins = "http://project-2-crypto-capitol.s3-website.us-east-2.amazonaws.com:4200", allowCredentials = "true")
 @SessionScope
 @RequestMapping(value = "/user")
 public class UserController {
