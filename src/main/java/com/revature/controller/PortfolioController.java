@@ -25,7 +25,7 @@ import com.revature.service.UserService;
 
 @RestController
 
-@CrossOrigin(origins ="http:172.17.14.49:4200")
+@CrossOrigin(origins ={"http:172.17.14.49:4200","http://localhost:4200" })
 @SessionScope
 @RequestMapping(value="/portfolio")
 public class PortfolioController {
