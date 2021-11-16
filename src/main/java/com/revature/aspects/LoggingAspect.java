@@ -16,27 +16,42 @@ public class LoggingAspect {
 
     @Before("within(com.revature.controller.*)")
     public void logControllerMethods(JoinPoint joinPoint) {
+
+
         log.info(joinPoint.getTarget() + " invoked " + joinPoint.getSignature() + " with param " + joinPoint.getArgs().toString());
+
     }
 
     @Before("within(com.revature.service.*)")
     public void logServiceMethods(JoinPoint joinPoint) {
+
+
         log.info(joinPoint.getTarget() + " invoked " + joinPoint.getSignature() + " with param " + joinPoint.getArgs().toString());
+
     }
 
     @Before("execution(* set*(..)) && within(com.revature.models.*)")
     public void logSetters(JoinPoint joinPoint) {
+
         log.info(joinPoint.getTarget() + " invoked " + joinPoint.getSignature() + " with param " + joinPoint.getArgs().toString());
+
     }
 
     @Before("execution(* login(..)) && within(com.revature.service.LoginService)")
     public void logLogin(JoinPoint joinPoint) {
+
         log.info(joinPoint.getTarget() + " invoked " + joinPoint.getSignature() + " with param " + joinPoint.getArgs().toString());
+
+
     }
 
     @Before("execution(* logout(..)) && within(com.revature.service.LoginService)")
     public void logLogout(JoinPoint joinPoint) {
+
+
         log.info(joinPoint.getTarget() + " invoked " + joinPoint.getSignature() + " with param " + joinPoint.getArgs().toString());
+
+
     }
 
 
