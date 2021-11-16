@@ -73,7 +73,7 @@ public class UserController {
         }
     }
 
-	//@CrossOrigin(origins = "http://18.219.112.104:4200/login")
+//	@CrossOrigin(origins = "http://18.219.112.104:4200/login")
     @PostMapping("/login")
     public ResponseEntity<UserDTO> login(@RequestBody UserDTO userDto) {
         userDto = loginService.login(userDto);
