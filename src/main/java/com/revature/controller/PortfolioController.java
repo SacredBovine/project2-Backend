@@ -25,7 +25,7 @@ import com.revature.service.UserService;
 
 @RestController
 
-@CrossOrigin(origins ="http://project-2-crypto-capitol.s3-website.us-east-2.amazonaws.com")
+@CrossOrigin(origins ={"http://project-2-crypto-capitol.s3-website.us-east-2.amazonaws.com", "http://localhost:4200"})
 @SessionScope
 @RequestMapping(value="/portfolio")
 public class PortfolioController {

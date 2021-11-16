@@ -20,7 +20,7 @@ import com.revature.models.Asset;
 @RestController
 @SessionScope
 @RequestMapping(value="/asset")
-@CrossOrigin(origins =" http://project-2-crypto-capitol.s3-website.us-east-2.amazonaws.com")
+@CrossOrigin(origins ={"http://project-2-crypto-capitol.s3-website.us-east-2.amazonaws.com", "http://localhost:4200"})
 public class AssetController {
 	
 	private AssetService assetService;

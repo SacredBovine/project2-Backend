@@ -64,11 +64,19 @@ public class OrderService {
 		
 		for(int i = 0; i < userPorfolio.size(); i++) {
 			if(userPorfolio.get(i).getAsset().getSymbol().equals(order.symbol)) {
+				
 				Portfolio portfolio = userPorfolio.get(i);
-				portfolio.setQuantity(portfolio.getQuantity() + order.quantity);
-				portfolio.setInvestment(portfolio.getInvestment() + (order.quantity * order.price ));
-				portFolioService.addOrUpdatePortfolio(portfolio);
-				cont++;
+				
+				if(portfolio.getQuantity() + order.quantity < 0.1 ) {
+					portFolioService.deletePortfolio(portfolio.getId());
+					cont++;
+				}else {
+					portfolio.setQuantity(portfolio.getQuantity() + order.quantity);
+					portfolio.setInvestment(portfolio.getInvestment() + (order.quantity * order.price ));
+					portFolioService.addOrUpdatePortfolio(portfolio);
+					cont++;
+				}
+				
 				break;
 			}
 		}
