@@ -6,7 +6,7 @@ CryptoCapitol is an online crypto currency tracker and mock trade system. User w
 
 ## Demo Example GIF
 
-<img src="https://github.com/SacredBovine/project2-Backend/blob/master/demoP2.gif" width=950 style="width: 256px; height: 256px;"><br>
+<img src="https://github.com/SacredBovine/project2-Backend/blob/master/demoP2.gif" width=850><br>
 
 ## Technologies Used
 
